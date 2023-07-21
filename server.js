@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express')
 const mongoose = require('mongoose');
 const Product = require('./models/ProductModel');
@@ -81,8 +82,8 @@ app.delete('/products/:id', async(req, res) => {
     }
 });
 
-
-mongoose.connect("mongodb+srv://efosa-dev:Y13Q3u00EJ2DLRPS@cluster0.rau3x8t.mongodb.net/server-api")
+const url = process.env.ATLAS_URL 
+mongoose.connect(url + "server-api")
 .then(() => {
     console.log("server connected to mongodb")
     app.listen(PORT, () => {console.log(`Server listening on port ${PORT}`)})
